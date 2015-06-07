@@ -31,8 +31,8 @@ function header_web()
 
 function footer_web()
 { ?> 
-  <div class="page-header" align="center">
-    <h4><small>Copyright@2015</small></h4>
+  <div class="panel-footer" align="center">
+    <h4><small>Copyright2015</small></h4>
   </div> 
 <?php } 
 

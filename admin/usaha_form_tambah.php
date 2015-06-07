@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/peta.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,38 +17,57 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="../js/jquery.js"></script>
-<script type="text/javascript">
-var htmlobjek;
-$(document).ready(function(){
-  //apabila terjadi event onchange terhadap object <select id=id_kec>
-  $("#id_kec").change(function(){
-    var id_kec = $("#id_kec").val();
-    $.ajax({
-        url: "ambilkota.php",
-        data: "id_kec="+id_kec,
-        cache: false,
-        success: function(msg){
-            //jika data sukses diambil dari server kita tampilkan
-            //di <select id=id_desa>
-            $("#id_desa").html(msg);
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"
+    type="text/javascript"></script>
+    <script type="text/javascript">
+    var htmlobjek;
+    $(document).ready(function(){
+      //apabila terjadi event onchange terhadap object <select id=id_kec>
+      $("#id_kec").change(function(){
+        var id_kec = $("#id_kec").val();
+        $.ajax({
+            url: "ambildesa.php",
+            data: "id_kec="+id_kec,
+            cache: false,
+            success: function(msg){
+                //jika data sukses diambil dari server kita tampilkan
+                //di <select id=id_desa>
+                $("#id_desa").html(msg);
         }
+      });
     });
-  });
-  $("#id_desa").change(function(){
-    var id_desa = $("#id_desa").val();
-    $.ajax({
-        url: "ambilkecamatan.php",
-        data: "id_desa="+id_desa,
-        cache: false,
-        success: function(msg){
-            $("#id_kec").html(msg);
-        }
-    });
-  });
-});
 
-</script>
+    function updateMarkerPosition(latLng) {
+    document.getElementById('lat').value = [latLng.lat()];
+    document.getElementById('lng').value = [latLng.lng()];
+    }
+
+    //membuat map baru
+    var myOptions = {
+      zoom: 11,
+      scaleControl: true,
+      center:  new google.maps.LatLng(-6.913785, 107.407542),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var map = new google.maps.Map(document.getElementById("map"), myOptions);
+    //sampai sini
+
+    //buat marker
+    var marker1 = new google.maps.Marker({
+      position : new google.maps.LatLng(-6.913785, 107.407542),
+      title : 'lokasi',
+      map : map,
+      draggable : true
+    });
+    
+    //updateMarkerPosition(latLng);
+    google.maps.event.addListener(marker1, 'drag', function() {
+      updateMarkerPosition(marker1.getPosition());
+    });
+
+    </script>
   </head>
   <body>
 <!-- AWAL CONTENT  -- hapus dari sini kebawah (sampai AKHIR CONTENT) -->
@@ -124,53 +144,53 @@ $(document).ready(function(){
                         <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Usaha">
                       </div>
                     </div>
-                    <!--<div class="form-group">
-                      <label for="nama_kec" class="col-sm-4 control-label">Kecamatan</label>
-                      <div class="col-sm-8">
-                        <select name="id_kec">
-                          <?php
-                          $link = koneksi_db();
-                          $sql="SELECT id_kec, nama_kec FROM kecamatan where dihapus='T'";
-                          $result = mysql_query($sql, $link);
-                          while ($data=mysql_fetch_array($result)) {
-                            ?>
-                              <option value="<?php echo "$data[id_kec]";?>">
-                                <?php echo "$data[nama_kec]";?>
-                              </option>
-                            <?php }?>
-                        </select>
-                        
-                      <label for="nama_desa" class="col-sm-4 control-label">Desa</label>
-                        <select name="id_desa">
-                          <?php
-                          $link = koneksi_db();
-                          
-                          if ($id_kec = $_GET['id_kec']) {
-                            $sql="SELECT id_desa, nama_desa FROM kecamatan where dihapus='T' and id_kec='$id_kec'";
-                            $result = mysql_query($sql, $link);
-                            while ($data=mysql_fetch_array($result)) {
-                            ?>
-                              <option value="<?php echo "$data[id_desa]";?>">
-                                <?php echo "$data[nama_desa]";?>
-                              </option>
-                          
-                          
-                            <?php }
-
-                            }?>
-                        </select>
-                      </div>
-                    </div>-->
                     <div class="form-group">
-                      <label for="lat" class="col-sm-4 control-label">Latitude</label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="lat" name="lat">
+                      <label for="nama_kec" class="col-sm-4 control-label">Kecamatan</label>
+                      <div class="col-sm-8" >
+                        <select name="id_kec" id="id_kec">
+                          <option>--Pilih Kecamatan--</option>
+                          <?php
+                          //mengambil nama-nama id_kec yang ada di database
+                          $id_kec = mysql_query("SELECT * FROM kecamatan ORDER BY nama_kec");
+                          while($p=mysql_fetch_array($id_kec)){
+                            echo "<option value=\"$p[id_kec]\">$p[nama_kec]</option>\n";
+                          }
+                          ?>
+                        </select>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="lng" class="col-sm-4 control-label">Longitude</label>
+                      <label for="nama_kec" class="col-sm-4 control-label">Desa</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="lng" name="lng">
+                        <select name="id_desa" id="id_desa">
+                          <option>--Pilih Desa--</option>
+                          <?php
+                          //mengambil nama-nama id_kec yang ada di database
+                          $res = mysql_query("SELECT * FROM desa ORDER BY nama_desa");
+                          while($p=mysql_fetch_array($res)){
+                            echo "<option value=\"$p[id_desa]\">$p[nama_desa]</option>\n";
+                          }
+                          ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class='row'>
+                      <div class="span8 ">
+                        <div class="form-group">
+                          <label for="lat" class="col-sm-4 control-label">Latitude</label>
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control" id="lat" name="lat">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="lng" class="col-sm-4 control-label">Longitude</label>
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control" id="lng" name="lng">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="span8">
+                       <div id="map"></div>
                       </div>
                     </div>
                     <div class="form-group" align="center">
@@ -198,6 +218,7 @@ $(document).ready(function(){
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/lokasi.js"></script>
     <!--<script>
       $('#datetimepicker').datetimepicker({
         format: 'dd-mm-yyyy',
