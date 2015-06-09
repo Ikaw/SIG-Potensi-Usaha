@@ -31,12 +31,12 @@
       <?php menu();?>
     </td>
     <td align="center" width="80%">
-      <div class="jumbotron">
-        <!<div class="container">
+      <div class="container">
+        <div class="jumbotron">
           <h1>Selamat Datang...</h1>
           <p>Hanya admin yang dapat mengakses halaman ini.</p>
           <p><a class="btn btn-primary btn-lg" href="#" role="button">Login</a></p>
-        <!</div>
+        </div>
       </div>
     </td>
   </tr>

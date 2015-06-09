@@ -85,7 +85,7 @@
                       <div class="form-group">
                       <label for="nama_kec" class="col-sm-4 control-label">Nama Kecamatan</label>
                       <div class="col-sm-8">
-                        <select name="id_kec">
+                        <select name="id_kec" class="form-control">
                           <?php
                           $link = koneksi_db();
                           $sql="SELECT id_kec, nama_kec FROM kecamatan where dihapus='T'";

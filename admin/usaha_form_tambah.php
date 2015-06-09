@@ -18,8 +18,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="js/jquery.js"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=false"
-    type="text/javascript"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    
     <script type="text/javascript">
     var htmlobjek;
     $(document).ready(function(){
@@ -118,13 +118,18 @@
                     <div class="form-group">
                       <label for="skala" class="col-sm-4 control-label">Skala Usaha</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="skala" name="skala">
+                        <select name="skala" class="form-control">
+                          <option>--Pilih Skala--</option>
+                          <option value="Mikro">Mikro</option>
+                          <option value="Kecil">Kecil</option>
+                          <option value="Menengah">Menengah</option>
+                        </select>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="nama_sektor" class="col-sm-4 control-label">Sektor</label>
                       <div class="col-sm-8">
-                        <select name="id_sektor">
+                        <select name="id_sektor" class="form-control">
                           <?php
                           $link = koneksi_db();
                           $sql="SELECT id_sektor, nama_sektor FROM sektor_usaha where dihapus='T'";
@@ -147,7 +152,7 @@
                     <div class="form-group">
                       <label for="nama_kec" class="col-sm-4 control-label">Kecamatan</label>
                       <div class="col-sm-8" >
-                        <select name="id_kec" id="id_kec">
+                        <select name="id_kec" id="id_kec" class="form-control">
                           <option>--Pilih Kecamatan--</option>
                           <?php
                           //mengambil nama-nama id_kec yang ada di database
@@ -162,11 +167,12 @@
                     <div class="form-group">
                       <label for="nama_kec" class="col-sm-4 control-label">Desa</label>
                       <div class="col-sm-8">
-                        <select name="id_desa" id="id_desa">
+                        <select name="id_desa" id="id_desa" class="form-control">
                           <option>--Pilih Desa--</option>
                           <?php
                           //mengambil nama-nama id_kec yang ada di database
-                          $res = mysql_query("SELECT * FROM desa ORDER BY nama_desa");
+                          $id_kec = $p['id_kec'];
+                          $res = mysql_query("SELECT * FROM desa WHERE id_kec='$id_kec' ORDER BY nama_desa");
                           while($p=mysql_fetch_array($res)){
                             echo "<option value=\"$p[id_desa]\">$p[nama_desa]</option>\n";
                           }
@@ -174,23 +180,25 @@
                         </select>
                       </div>
                     </div>
-                    <div class='row'>
-                      <div class="span8 ">
-                        <div class="form-group">
-                          <label for="lat" class="col-sm-4 control-label">Latitude</label>
-                          <div class="col-sm-8">
-                            <input type="text" class="form-control" id="lat" name="lat">
+                    <div class="form-group">
+                      <div class='row'>
+                        <div class="span8 ">
+                          <div class="form-group">
+                            <label for="lat" class="col-sm-4 control-label">Latitude</label>
+                            <div class="col-sm-8">
+                              <input type="text" class="form-control" id="lat" name="lat">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="lng" class="col-sm-4 control-label">Longitude</label>
+                            <div class="col-sm-8">
+                              <input type="text" class="form-control" id="lng" name="lng">
+                            </div>
                           </div>
                         </div>
-                        <div class="form-group">
-                          <label for="lng" class="col-sm-4 control-label">Longitude</label>
-                          <div class="col-sm-8">
-                            <input type="text" class="form-control" id="lng" name="lng">
-                          </div>
+                        <div class="span8">
+                         <div id="map"></div>
                         </div>
-                      </div>
-                      <div class="span8">
-                       <div id="map"></div>
                       </div>
                     </div>
                     <div class="form-group" align="center">

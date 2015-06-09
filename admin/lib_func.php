@@ -64,57 +64,6 @@ function form_login(){ ?>
 
 <?php } 
 function menu_admin(){ ?>
-<!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-      <h3>ADMINISTRATOR</h3>
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-        Data Pengusaha
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="list-group">
-        <a href="pengusaha_form_tambah.php" class="list-group-item">Tambah</a>
-        <a href="#" class="list-group-item">Ubah</a>
-        <a href="#" class="list-group-item">Hapus</a>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Data Usaha
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="list-group">
-        <a href="#" class="list-group-item">Tambah</a>
-        <a href="#" class="list-group-item">Ubah</a>
-        <a href="#" class="list-group-item">Hapus</a>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Data Kecamatan
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="list-group">
-        <a href="#" class="list-group-item">Tambah</a>
-        <a href="#" class="list-group-item">Ubah</a>
-        <a href="#" class="list-group-item">Hapus</a>
-      </div>
-    </div>
-  </div>
-</div>-->
 
 <div class="list-group" align="center">
   <h3>ADMINISTRATOR</h3>
