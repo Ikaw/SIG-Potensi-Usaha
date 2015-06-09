@@ -72,6 +72,7 @@ function menu_admin(){ ?>
   <a href="kecamatan_view.php" class="list-group-item">Data Kecamatan</a>
   <a href="desa_view.php" class="list-group-item">Data Desa</a>
   <a href="usaha_view.php" class="list-group-item">Data Usaha</a>
+  <a href="galeri_view.php" class="list-group-item">Data Galeri</a>
   <a href="#" class="list-group-item"><font color="blue"><b>LOGOUT</b></font></a>
 </div>
 
