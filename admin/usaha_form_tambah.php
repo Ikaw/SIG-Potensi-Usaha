@@ -23,20 +23,23 @@
     <script type="text/javascript">
     var htmlobjek;
     $(document).ready(function(){
-      //apabila terjadi event onchange terhadap object <select id=id_kec>
-      $("#id_kec").change(function(){
-        var id_kec = $("#id_kec").val();
+      //apabila terjadi event onchange terhadap object <select id=kecamatan>
+      $("#kecamatan").change(function(){
+        var kecamatan = $("#kecamatan").val();
         $.ajax({
             url: "ambildesa.php",
-            data: "id_kec="+id_kec,
+            data: "kecamatan="+kecamatan,
             cache: false,
             success: function(msg){
                 //jika data sukses diambil dari server kita tampilkan
-                //di <select id=id_desa>
-                $("#id_desa").html(msg);
-        }
+                //di <select id=kota>
+                $("#desa").html(msg);
+            }
+        });
       });
     });
+    </script>
+    <script type="text/javascript">
 
     function updateMarkerPosition(latLng) {
     document.getElementById('lat').value = [latLng.lat()];
@@ -150,14 +153,16 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="nama_kec" class="col-sm-4 control-label">Kecamatan</label>
+                      <label for="kecamatan" class="col-sm-4 control-label">Kecamatan</label>
                       <div class="col-sm-8" >
-                        <select name="id_kec" id="id_kec" class="form-control">
+                        <select name="kecamatan" id="kecamatan" class="form-control">
                           <option>--Pilih Kecamatan--</option>
                           <?php
-                          //mengambil nama-nama id_kec yang ada di database
-                          $id_kec = mysql_query("SELECT * FROM kecamatan ORDER BY nama_kec");
-                          while($p=mysql_fetch_array($id_kec)){
+                          mysql_connect("localhost","root","");
+                          mysql_select_db("db_sigbb");
+                          //mengambil nama-nama kecamatan yang ada di database
+                          $kecamatan = mysql_query("SELECT * FROM kecamatan ORDER BY nama_kec");
+                          while($p=mysql_fetch_array($kecamatan)){
                             echo "<option value=\"$p[id_kec]\">$p[nama_kec]</option>\n";
                           }
                           ?>
@@ -165,15 +170,14 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="nama_kec" class="col-sm-4 control-label">Desa</label>
+                      <label for="desa" class="col-sm-4 control-label">Desa</label>
                       <div class="col-sm-8">
-                        <select name="id_desa" id="id_desa" class="form-control">
+                        <select name="desa" id="desa" class="form-control">
                           <option>--Pilih Desa--</option>
                           <?php
-                          //mengambil nama-nama id_kec yang ada di database
-                          $id_kec = $p['id_kec'];
-                          $res = mysql_query("SELECT * FROM desa WHERE id_kec='$id_kec' ORDER BY nama_desa");
-                          while($p=mysql_fetch_array($res)){
+                          //mengambil nama-nama desa yang ada di database
+                          $desa = mysql_query("SELECT * FROM desa ORDER BY nama_desa");
+                          while($p=mysql_fetch_array($kecamatan)){
                             echo "<option value=\"$p[id_desa]\">$p[nama_desa]</option>\n";
                           }
                           ?>
@@ -181,25 +185,19 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <div class='row'>
-                        <div class="span8 ">
-                          <div class="form-group">
-                            <label for="lat" class="col-sm-4 control-label">Latitude</label>
-                            <div class="col-sm-8">
-                              <input type="text" class="form-control" id="lat" name="lat">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="lng" class="col-sm-4 control-label">Longitude</label>
-                            <div class="col-sm-8">
-                              <input type="text" class="form-control" id="lng" name="lng">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="span8">
-                         <div id="map"></div>
-                        </div>
+                      <label for="lat" class="col-sm-4 control-label">Latitude</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="lat" name="lat">
                       </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="lng" class="col-sm-4 control-label">Longitude</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="lng" name="lng">
+                      </div>
+                    </div>
+                    <div class="span8">
+                      <div id="map"></div>
                     </div>
                     <div class="form-group" align="center">
                       <div class="col-sm-offset-2 col-sm-10">
