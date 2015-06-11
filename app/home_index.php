@@ -3,7 +3,7 @@
 =false"></script>
 <style>
 	#map {
-	width: 1200px;
+	width: auto;
 	height: 600px;
 	}
 </style>
@@ -41,6 +41,12 @@
 </head>
 <body>
 <center>
-	<h3>Berikut Adalah Data Informasi Usaha di Kabupaten Bandung Barat</h3>
-	<div id="map"></div>
+	<div class="container">
+	 <div class="row">
+	  <div class="span6">
+	  <h3>Berikut Adalah Data Informasi Usaha di Kabupaten Bandung Barat</h3>
+	   <div id="map"></div>
+	  </div>
+	 </div>
+	</div>
 </center>

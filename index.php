@@ -7,15 +7,15 @@ isset ($_GET['app']) ? $app = $_GET['app'] : $app = 'home_index';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Sistem Informasi Geografis Potensi Usaha</title>
-	<link href="<?php echo $base_url;?>css/bootstrap.min.css" rel="stylesheet">
-	<link href="<?php echo $base_url;?>css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link href="<?php echo $base_url;?>css/style.css" rel="stylesheet">
-	<link rel="shortcut icon" href="<?php echo $base_url;?>img/KBB_logo.ico">
-	<script type="text/javascript" src="<?php echo $base_url;?>js/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo $base_url;?>js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<?php echo $base_url;?>js/scripts.js"></script>
+	<?php include("lib/lib_func.php"); ?>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="<?php echo $base_url;?>img/KBB_logo.ico">
+    <title>Sistem Informasi Geografis Potensi Usaha</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
 	<style type="text/css">
       html, body {
@@ -42,13 +42,12 @@ isset ($_GET['app']) ? $app = $_GET['app'] : $app = 'home_index';
       background-color:rgba(255,255,255,0.9);
       }
 
-      a:link, a:visited, a:hover {
+      a:link, a:visited{
         color: blue;
       }
 
       a.to-top:link,
-      a.to-top:visited, 
-      a.to-top:hover {
+      a.to-top:visited{
         margin-top: 1000px;
         display: block;
         font-weight: bold;
@@ -60,7 +59,7 @@ isset ($_GET['app']) ? $app = $_GET['app'] : $app = 'home_index';
 <style type="text/css">
 
 .font1 {
-    font-family: "Baskerville Old Face";
+    font-family: "Arial";
 	color : black;
 	font-size : 35pt;
 }
@@ -89,14 +88,14 @@ isset ($_GET['app']) ? $app = $_GET['app'] : $app = 'home_index';
 			<div class="span12">
 				<div class="page-header" align="center">
 				<img src="img/KBB_logo.png" height="90" width="90" />
-					<h3><a class="font1">
-						Sistem Informasi Geografis<br> Potensi Usaha Bandung Barat</a></h3>
+					<h1>
+						Sistem Informasi Geografis<br> Potensi Usaha Bandung Barat</h1>
 				</div>
 				<ul class="nav nav-tabs">
-					<li <?php echo $app=='home'?'class="active"':'';?>><a href="index.php"><i class="icon-home"></i>  Beranda</a></li>
-					<li <?php echo $app=='home_admin'?'class="active"' :'';?>><a href="index.php?app=usaha_cari"><i class="icon-user"></i>  Cari Usaha Terdaftar</a></li>
-					<li <?php echo $app=='home_user'?'class="active"' :'';?>><a href="index.php?app=usaha_daftar"><i class="icon-star-empty"></i>  Daftarkan Usaha</a></li>
-					<li <?php echo $app=='about'?'class="active"' :'';?>><a href="index.php?app=about"><i class="icon-briefcase"></i>  About</a></li>
+					<li <?php echo $app=='home'?'class="active"':'';?>><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  Beranda</a></li>
+					<li <?php echo $app=='home_admin'?'class="active"' :'';?>><a href="index.php?app=usaha_cari"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>  Cari Usaha Terdaftar</a></li>
+					<li <?php echo $app=='home_user'?'class="active"' :'';?>><a href="index.php?app=pengusaha_daftar"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>  Daftarkan Usaha</a></li>
+					<li <?php echo $app=='about'?'class="active"' :'';?>><a href="index.php?app=about"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  About</a></li>
 					
 					<li class="dropdown pull-right">
 					
@@ -105,11 +104,11 @@ isset ($_GET['app']) ? $app = $_GET['app'] : $app = 'home_index';
 						<ul class="dropdown-menu">
 							<li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
 							<?php else:?>
-						<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-user"></i>Login<strong class="caret"></strong></a>
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Guest <strong class="caret"></strong></a>
 						<ul class="dropdown-menu">
-							<li><a href="index.php?app=login_petugas"><i class="icon-user"></i>  Login Pemilik Usaha</a></li>
+							<li><a href="index.php?app=login_pemilik_usaha"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
 							<li class="divider"></li>
-							<li><a href="index.php?app=login_admin"><i class="icon-user"></i>  Login Admin Dinas</a></li>
+							<li><a href="index.php?app=pengusaha_input_form"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Buat Akun Pengusaha</a></li>
 							<?php endif;?>							
 						</ul>
 					</li>
@@ -133,7 +132,9 @@ if(file_exists('app/'.$app.'.php')){
 
 ?>
 </div>
-<p class="footer"><a>Developed By&nbsp;</a> Kelompok 4 Aplikasi Teknologi Online Universitas Komputer Indonesia&nbsp; &nbsp;</p>
+<div class="panel-footer" align="center">
+    <h4><small><a>Developed By&nbsp;</a> Kelompok 4 Aplikasi Teknologi Online Universitas Komputer Indonesia&nbsp; &nbsp;</small></h4>
+  </div>
 </div>
 </body>
 </html>
