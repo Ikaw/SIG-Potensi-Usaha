@@ -1,4 +1,5 @@
 <?php empty( $app ) ? header('location:../index.php') : '' ;?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +20,7 @@
 <table width="100%" align="center" border=0 > 
        <td valign="top" width="80%">
           <!-- MULAI KODING DISINI -->
-          <form method="POST" action="pengusaha_proses_tambah.php" enctype="multipart/form-data" class="form-horizontal">
+          <form method="POST" action="pengusaha_daftar_proses.php" enctype="multipart/form-data" class="form-horizontal">
             <table align="center" width="50%"
               <tr>
                 <td align="center" colspan=2>

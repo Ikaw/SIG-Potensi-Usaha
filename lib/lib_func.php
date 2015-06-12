@@ -21,7 +21,7 @@
 <!-- AWAL CONTENT  -- hapus dari sini kebawah (sampai AKHIR CONTENT) -->
 <?php
 
-function header_web()
+/*function header_web()
 { ?>
   <div class="page-header">
     <h1><font color="blue">Sistem Informasi Geografis Potensi Usaha 
@@ -97,7 +97,7 @@ $telahlogin=true; //Nanti di isi perintah pemeriksaan status login
     belum_login(); 
   else 
     menu_admin(); 
-} 
+} */
 
 function koneksi_db(){ 
 

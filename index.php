@@ -108,7 +108,7 @@ isset ($_GET['app']) ? $app = $_GET['app'] : $app = 'home_index';
 						<ul class="dropdown-menu">
 							<li><a href="index.php?app=login_pemilik_usaha"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
 							<li class="divider"></li>
-							<li><a href="index.php?app=pengusaha_input_form"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Buat Akun Pengusaha</a></li>
+							<li><a href="index.php?app=pengusaha_daftar_form"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Buat Akun Pengusaha</a></li>
 							<?php endif;?>							
 						</ul>
 					</li>
