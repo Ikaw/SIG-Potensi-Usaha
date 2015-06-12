@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2015 at 09:37 AM
+-- Generation Time: Jun 12, 2015 at 03:39 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS `data_usaha` (
   `nama_usaha` varchar(30) NOT NULL,
   `produk_utama` varchar(20) NOT NULL,
   `alamat_usaha` varchar(50) NOT NULL,
-  `gambar_usaha` varchar(30) NOT NULL,
   `deskripsi_usaha` varchar(100) NOT NULL,
   `lat` float NOT NULL,
   `lng` float NOT NULL,
@@ -39,8 +38,18 @@ CREATE TABLE IF NOT EXISTS `data_usaha` (
   `id_desa` int(11) NOT NULL,
   `id_sektor` int(11) NOT NULL,
   `skala` enum('MIKRO','KECIL','MENENGAH') NOT NULL,
-  `dihapus` char(1) DEFAULT 'T'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `dihapus` char(1) DEFAULT 'T',
+  `aktivasi` enum('ACTIVE','DEACTIVE') NOT NULL DEFAULT 'DEACTIVE'
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_usaha`
+--
+
+INSERT INTO `data_usaha` (`id_usaha`, `nama_usaha`, `produk_utama`, `alamat_usaha`, `deskripsi_usaha`, `lat`, `lng`, `id_kec`, `id_desa`, `id_sektor`, `skala`, `dihapus`, `aktivasi`) VALUES
+(1, 'Ika Bakery', 'Cake Pop', 'Cihampelas', 'Usaha yang mulai dirintis dari tahun 2010', -6.94872, 107.495, 3, 6, 1, 'MIKRO', 'Y', 'DEACTIVE'),
+(2, 'Maju Jaya', 'Ikan Laut Segar', 'Jalan Raya Batu Jajar', 'Menyediakan berbagai macam ikan laut segar', -6.91361, 107.498, 2, 4, 3, 'KECIL', 'T', 'DEACTIVE'),
+(3, 'Budi Sepatu', 'Sepatu', 'Cihampelas', 'Toko Sepatu', -6.94454, 107.489, 3, 7, 1, 'KECIL', 'T', 'DEACTIVE');
 
 -- --------------------------------------------------------
 
@@ -53,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `desa` (
   `nama_desa` varchar(20) NOT NULL,
   `id_kec` int(11) NOT NULL,
   `dihapus` char(1) DEFAULT 'T'
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `desa`
@@ -61,7 +70,11 @@ CREATE TABLE IF NOT EXISTS `desa` (
 
 INSERT INTO `desa` (`id_desa`, `nama_desa`, `id_kec`, `dihapus`) VALUES
 (4, 'Batujajar Barat', 2, 'Y'),
-(5, 'Batujajar Tengah', 2, 'T');
+(5, 'Batujajar Tengah', 2, 'T'),
+(6, 'Cihampelas', 3, 'T'),
+(7, 'Citapen', 3, 'T'),
+(8, 'Cipatik', 3, 'T'),
+(9, 'Mekarharum', 3, 'T');
 
 -- --------------------------------------------------------
 
@@ -209,12 +222,12 @@ ALTER TABLE `sektor_usaha`
 -- AUTO_INCREMENT for table `data_usaha`
 --
 ALTER TABLE `data_usaha`
-MODIFY `id_usaha` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_usaha` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `desa`
 --
 ALTER TABLE `desa`
-MODIFY `id_desa` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id_desa` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `galeri`
 --
