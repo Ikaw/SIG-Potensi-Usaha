@@ -26,7 +26,7 @@
                   <br>
                   <div class="panel panel-primary">
                     <div class="panel-heading">
-                      <h3 class="panel-title">Tambah Data Pengusaha</h3>
+                      <h3 class="panel-title">Halaman Pendaftaran Data Pengusaha</h3>
                     </div>
                   </div>
                 </td>

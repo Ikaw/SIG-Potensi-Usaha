@@ -42,11 +42,21 @@
 <body>
 <center>
 	<div class="container">
+	<h3>Berikut Adalah Data Informasi Usaha di Kabupaten Bandung Barat</h3>
 	 <div class="row">
 	  <div class="span6">
-	  <h3>Berikut Adalah Data Informasi Usaha di Kabupaten Bandung Barat</h3>
-	   <div id="map"></div>
+		  <div class="col-lg-3">
+		  <h4>Filter Data Usaha : </h4>
+	           <div class="input-group" align="center">
+	                <input type="text" class="form-control" placeholder="Pencarian...">
+	                <span class="input-group-btn">
+	                     <button class="btn btn-primary" type="button">Cari</button>
+	                </span>
+	            </div>
+	       </div>
+	    <div id="map"></div>
 	  </div>
-	 </div>
+	 </div>	
 	</div>
 </center>
+
