@@ -20,7 +20,7 @@
     } 
 
     // Select all the rows in the markers table -> Sesuaikan tabel yang akan diambil datanya
-    $query = "SELECT nama_usaha,alamat_usaha,lat,lng FROM data_usaha WHERE 1";
+    $query = "SELECT nama_usaha,alamat_usaha,lat,lng,id_sektor FROM data_usaha WHERE 1";
     $result = mysql_query($query);
     if (!$result) {  
       die('Invalid query: ' . mysql_error());
@@ -36,7 +36,8 @@
       $newnode->setAttribute("name",$row['nama_usaha']);
       $newnode->setAttribute("address", $row['alamat_usaha']);  
       $newnode->setAttribute("lat", $row['lat']);  
-      $newnode->setAttribute("lng", $row['lng']);  
+      $newnode->setAttribute("lng", $row['lng']);
+      $newnode->setAttribute("category", $row['id_sektor']);  
     } 
 
     echo $dom->saveXML();
