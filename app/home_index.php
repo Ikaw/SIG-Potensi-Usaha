@@ -66,21 +66,35 @@
 <body onLoad="load()">
 <center>
 	<div class="container">
-	<h3>Berikut Adalah Data Informasi Usaha di Kabupaten Bandung Barat</h3>
-	 <div class="row">
-	  <div class="span6">
-		  <div class="col-lg-3">
-		  <h4>Filter Data Usaha : </h4>
+	<h3>Pemetaan Data Usaha di Kabupaten Bandung Barat</h3>
+  <table width="80%" align="center">
+  <tr>
+    <td align="center">
+        <br/>
+        <br/>
+	     <div class="row" align="center">
+	     <div class="span6">
+		    <div class="col-lg-8">
+		      <p>Filter Data Usaha : </p>
 	           <div class="input-group" align="center">
 	                <input type="text" class="form-control" placeholder="Pencarian...">
 	                <span class="input-group-btn">
 	                     <button class="btn btn-primary" type="button">Cari</button>
 	                </span>
-	            </div>
+	           </div>
 	       </div>
-	    <div id="map"></div>
+      </td>
+  </tr>
+      <tr>
+        <td>
+            <br/>
+            <br/>
+	         <div id="map"></div>
+        </td>
+      </tr>  
 	  </div>
-	 </div>	
+	 </div>
+   </table>	
 	</div>
 </center>
 
