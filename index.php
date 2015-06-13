@@ -93,8 +93,7 @@ isset ($_GET['app']) ? $app = $_GET['app'] : $app = 'home_index';
 				</div>
 				<ul class="nav nav-tabs">
 					<li <?php echo $app=='home'?'class="active"':'';?>><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  Beranda</a></li>
-					<li <?php echo $app=='home_admin'?'class="active"' :'';?>><a href="index.php?app=usaha_cari"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>  Cari Usaha Terdaftar</a></li>
-					<li <?php echo $app=='home_user'?'class="active"' :'';?>><a href="index.php?app=pengusaha_daftar"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>  Daftarkan Usaha</a></li>
+					<li <?php echo $app=='home_user'?'class="active"' :'';?>><a href="index.php?app=pengusaha_daftar"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>  Statistik Data Usaha</a></li>
 					<li <?php echo $app=='about'?'class="active"' :'';?>><a href="index.php?app=about"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  About</a></li>
 					
 					<li class="dropdown pull-right">
