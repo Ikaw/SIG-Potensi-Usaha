@@ -5,10 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="<?php echo $base_url;?>gambar/KBB_logo.ico">
     <title>Sistem Informasi Geografis Potensi Usaha</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,10 +23,10 @@
   <body>
 <!-- AWAL CONTENT  -- hapus dari sini kebawah (sampai AKHIR CONTENT) -->
 
-<table width="100%" align="center" border=0 bordercolor="#FFFFFF"> 
+<table width="100%" align="center" border=0 bordercolor="#FFFFFF">
   <tr>
-    <td align="center" colspan=2>
-      <?php header_web();?>
+    <td colspan=2 align="center" >
+       <?php header_web();?>
     </td>
   </tr>
   <tr>

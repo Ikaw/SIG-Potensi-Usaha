@@ -55,7 +55,7 @@ isset ($_GET['app']) ? $app = $_GET['app'] : $app = 'home_index';
         font-size: 30px;
       }
 
-    </style>
+</style>
 <style type="text/css">
 
 .font1 {
@@ -115,10 +115,9 @@ isset ($_GET['app']) ? $app = $_GET['app'] : $app = 'home_index';
 			</div>
 		</div>
 	</div>
+	
 <div id="content">
-
 <?php 	
-
 //menampilkan pesan setelah berhasil login		
 if(isset($_SESSION['pesan'])){echo $_SESSION['pesan']; unset($_SESSION['pesan']);}
 
