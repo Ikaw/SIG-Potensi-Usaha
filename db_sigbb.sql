@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2015 at 03:39 PM
+-- Generation Time: Jun 14, 2015 at 05:40 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -19,6 +19,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_sigbb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `nip` varchar(30) NOT NULL,
+  `password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -39,17 +50,17 @@ CREATE TABLE IF NOT EXISTS `data_usaha` (
   `id_sektor` int(11) NOT NULL,
   `skala` enum('MIKRO','KECIL','MENENGAH') NOT NULL,
   `dihapus` char(1) DEFAULT 'T',
-  `aktivasi` enum('ACTIVE','DEACTIVE') NOT NULL DEFAULT 'DEACTIVE'
+  `aktivasi` enum('ACTIVE','DEACTIVE') NOT NULL DEFAULT 'DEACTIVE',
+  `no_ktp` varchar(30) NOT NULL,
+  `tgl_daftar` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_usaha`
 --
 
-INSERT INTO `data_usaha` (`id_usaha`, `nama_usaha`, `produk_utama`, `alamat_usaha`, `deskripsi_usaha`, `lat`, `lng`, `id_kec`, `id_desa`, `id_sektor`, `skala`, `dihapus`, `aktivasi`) VALUES
-(1, 'Ika Bakery', 'Cake Pop', 'Cihampelas', 'Usaha yang mulai dirintis dari tahun 2010', -6.94872, 107.495, 3, 6, 1, 'MIKRO', 'Y', 'DEACTIVE'),
-(2, 'Maju Jaya', 'Ikan Laut Segar', 'Jalan Raya Batu Jajar', 'Menyediakan berbagai macam ikan laut segar', -6.91361, 107.498, 2, 4, 3, 'KECIL', 'T', 'DEACTIVE'),
-(3, 'Budi Sepatu', 'Sepatu', 'Cihampelas', 'Toko Sepatu', -6.94454, 107.489, 3, 7, 1, 'KECIL', 'T', 'DEACTIVE');
+INSERT INTO `data_usaha` (`id_usaha`, `nama_usaha`, `produk_utama`, `alamat_usaha`, `deskripsi_usaha`, `lat`, `lng`, `id_kec`, `id_desa`, `id_sektor`, `skala`, `dihapus`, `aktivasi`, `no_ktp`, `tgl_daftar`) VALUES
+(1, 'Ika Bakery', 'Kue Bolu Uenak', 'Jl Cihampelas No 123', 'Menyediakan berbagai macam kue bolu', -6.94872, 107.495, 3, 6, 1, 'MIKRO', 'T', 'DEACTIVE', '3273225102940009', '2015-06-13 12:00:00');
 
 -- --------------------------------------------------------
 
@@ -139,18 +150,19 @@ CREATE TABLE IF NOT EXISTS `pemilik_usaha` (
   `email` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
   `dihapus` char(1) NOT NULL DEFAULT 'T',
-  `aktivasi` enum('DEACTIVE','ACTIVE') NOT NULL DEFAULT 'DEACTIVE'
+  `aktivasi` enum('DEACTIVE','ACTIVE') NOT NULL DEFAULT 'DEACTIVE',
+  `tgl_daftar` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemilik_usaha`
 --
 
-INSERT INTO `pemilik_usaha` (`no_ktp`, `nama`, `alamat`, `tpt_lahir`, `tgl_lahir`, `foto_ktp`, `no_telp`, `email`, `password`, `dihapus`, `aktivasi`) VALUES
-('1234567890', 'Tresna Gumelar', 'Bandung Barat', 'Majene', '2015-06-01', 'digital-book-logo.jpg', '1234567890', 'tresna@mail.com', 'rahasia', 'T', 'DEACTIVE'),
-('3273225102940007', 'Ika Widya', 'Jalan Cijawura Hilir No 356', 'Bandung', '1994-02-11', 'digital-book-logo.jpg', '085721740036', 'ikawidyaa@gmail.com', 'rahasia', 'Y', 'DEACTIVE'),
-('3273225102940009', 'Iwid', 'Jalan Baru', 'Bandung', '1993-05-23', 'e-book.jpg', '022-7509567', 'iwidiii@gmail.com', 'widya', 'T', 'DEACTIVE'),
-('3273225312930008', 'Ani Suryano', 'Jalan Dulu', 'Jogjakarta', '1993-12-13', 'tablet-e-book-library-.jpg', '08657213456', 'ani@mail.com', 'ani', 'T', 'DEACTIVE');
+INSERT INTO `pemilik_usaha` (`no_ktp`, `nama`, `alamat`, `tpt_lahir`, `tgl_lahir`, `foto_ktp`, `no_telp`, `email`, `password`, `dihapus`, `aktivasi`, `tgl_daftar`) VALUES
+('1234567890', 'Tresna Gumelar', 'Bandung Barat', 'Majene', '2015-06-01', 'digital-book-logo.jpg', '1234567890', 'tresna@mail.com', 'rahasia', 'T', 'DEACTIVE', '0000-00-00 00:00:00'),
+('3273225102940007', 'Ika Widya', 'Jalan Cijawura Hilir No 356', 'Bandung', '1994-02-11', 'digital-book-logo.jpg', '085721740036', 'ikawidyaa@gmail.com', 'rahasia', 'Y', 'DEACTIVE', '0000-00-00 00:00:00'),
+('3273225102940009', 'Iwid', 'Jalan Baru', 'Bandung', '1993-05-23', 'e-book.jpg', '022-7509567', 'iwidiii@gmail.com', 'widya', 'T', 'DEACTIVE', '0000-00-00 00:00:00'),
+('3273225312930008', 'Ani Suryano', 'Jalan Dulu', 'Jogjakarta', '1993-12-13', 'tablet-e-book-library-.jpg', '08657213456', 'ani@mail.com', 'ani', 'T', 'DEACTIVE', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -179,10 +191,16 @@ INSERT INTO `sektor_usaha` (`id_sektor`, `nama_sektor`, `dihapus`) VALUES
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+ ADD PRIMARY KEY (`nip`);
+
+--
 -- Indexes for table `data_usaha`
 --
 ALTER TABLE `data_usaha`
- ADD PRIMARY KEY (`id_usaha`), ADD KEY `fk_datausaha_01` (`id_desa`), ADD KEY `fk_datausaha_02` (`id_kec`), ADD KEY `fk_datausaha_03` (`id_sektor`);
+ ADD PRIMARY KEY (`id_usaha`), ADD KEY `fk_datausaha_01` (`id_desa`), ADD KEY `fk_datausaha_02` (`id_kec`), ADD KEY `fk_datausaha_03` (`id_sektor`), ADD KEY `fk_datausaha_04` (`no_ktp`);
 
 --
 -- Indexes for table `desa`
@@ -253,7 +271,8 @@ MODIFY `id_sektor` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 ALTER TABLE `data_usaha`
 ADD CONSTRAINT `fk_datausaha_01` FOREIGN KEY (`id_desa`) REFERENCES `desa` (`id_desa`),
 ADD CONSTRAINT `fk_datausaha_02` FOREIGN KEY (`id_kec`) REFERENCES `kecamatan` (`id_kec`),
-ADD CONSTRAINT `fk_datausaha_03` FOREIGN KEY (`id_sektor`) REFERENCES `sektor_usaha` (`id_sektor`);
+ADD CONSTRAINT `fk_datausaha_03` FOREIGN KEY (`id_sektor`) REFERENCES `sektor_usaha` (`id_sektor`),
+ADD CONSTRAINT `fk_datausaha_04` FOREIGN KEY (`no_ktp`) REFERENCES `pemilik_usaha` (`no_ktp`);
 
 --
 -- Constraints for table `desa`
