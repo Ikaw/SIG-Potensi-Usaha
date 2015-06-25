@@ -1,5 +1,5 @@
 <?php  
-    //Sesuaikan username, password dan nama database sesuai db anda
+    //Sesuaikan username, password dan nama database
     $user="root";
     $password="";
     $database="db_sigbb";

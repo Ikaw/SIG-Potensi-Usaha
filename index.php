@@ -67,7 +67,7 @@
       </script>
     <!-- End Maps-->
     <meta charset="utf-8">
-    <title>Legend - One Page Bootstrap Template</title>
+    <title>GIS - Potensi Usaha KBB</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -94,7 +94,7 @@
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/KBB_logo.ico">
     <!-- JQuery -->
     <script type="text/javascript" src="js/jquery.js"></script>
     <!-- Load ScrollTo -->
@@ -116,12 +116,17 @@
           <div class="container">
             <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-            <h1 class="brand"><a href="#top"><i>GIS</i> Potensi Usaha Bandung Barat</a></h1>
+            <h1 class="brand">
+            	<a href="#top">
+            		<img src="img/KBB_logo.png" width="40" height="40">
+            		<i>GIS</i> Potensi Usaha Bandung Barat
+            	</a>
+            </h1>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <nav class="pull-right nav-collapse collapse">
               <ul id="menu-main" class="nav">
-                <li><a title="portfolio" href="#portfolio">Peta</a></li>
-                <li><a title="services" href="#services">Daftarkan</a></li>
+                <li><a title="peta" href="#peta">Peta</a></li>
+                <li><a title="daftar" href="#daftar">Daftar</a></li>
                 <li><a title="news" href="#news">Info</a></li>
                 <li><a title="team" href="#team">Tim</a></li>
                 <li><a title="contact" href="#contact">Kontak</a></li>
@@ -165,9 +170,9 @@
           <div class="row">
             <div class="span12">
               <article>
-                <p>We work to make web a beautiful place.</p>
-                <p>We craft beautiful designs and convert them into</p>
-                <p>fully functional and user-friendy web app.</p>
+                <p>Geographics Information System (GIS) Potensi Usaha KBB
+                merupakan website yg menyediakan informasi mengenai data usaha yang ada di bandung barat</p>
+                <p>Data yang ditampilkan merupakan data yang terdaftar pada database kami.</p>
               </article>
             </div>
             <!-- ./span12 -->
@@ -178,10 +183,10 @@
       </section>
     </div>
     <hr>
-    <!--******************** Portfolio Section ********************-->
-    <section id="portfolio" class="single-page scrollblock">
+    <!--******************** Maps Section ********************-->
+    <section id="peta" class="single-page scrollblock">
       <div class="container">
-        <div class="align"><i class="icon-desktop-circled"></i></div>
+        <div class="align"><i class="icon-map"></i></div>
         <h1 id="folio-headline">Peta Usaha</h1>
         <div class="row">
           <div >
@@ -192,39 +197,86 @@
       <!-- /.container -->
     </section>
     <hr>
-    <!--******************** Services Section ********************-->
-    <section id="services" class="single-page scrollblock">
+    <!--******************** Daftar Section ********************-->
+    <section id="daftar" class="single-page scrollblock">
       <div class="container">
-        <div class="align"><i class="icon-cog-circled"></i></div>
-        <h1>Services</h1>
-        <!-- Four columns -->
+        <div class="align"><i class="icon-plus-circled"></i></div>
+        <h1>Punya Usaha? Daftarkan diri anda.</h1>
+        <!-- Form Daftar Usaha -->
         <div class="row">
-          <div class="span3">
-            <div class="align"> <i class="icon-desktop sev_icon"></i> </div>
-            <h2>Web design</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+          <div class="span12">
+            <div class="cform" id="theme-form">
+              <form action="pengusaha_daftar_proses.php" method="post" class="cform-form">
+                <div class="row">
+                    <div class="span5"> <span class="nama">
+                    <input type="text" name="nama" class="cform-text" placeholder="Nama Lengkap" title="Username"></input>
+                    </span> </div>
+                </div>
+                <div class="row">
+                	<div class="span5"> <span class="noktp">
+                    <input type="text" name="noktp" class="cform-text" placeholder="Nomor KTP" title="Nomor KTP"></input>
+                    </span> </div>
+                </div>
+                <div class="row">
+                	<div class="span5"> <span class="alamatTinggal">
+                    <input type="text" name="alamatTinggal" class="cform-text" placeholder="Alamat Tinggal" title="Alamat Tinggal"></input>
+                    </span> </div>
+                </div>
+                <div class="row">
+                	<div class="span5"> <span class="tempatLahir">
+                    <input type="text" name="tempatLahir" class="cform-text" placeholder="Tempat Lahir" title="Tempat Lahir"></input>
+                    </span> </div>
+                </div>
+                <div class="row">
+                	<div class="span5"> <span class="tanggalLahir" >
+	                <label>Format dd-mm-yyyy Contoh : 12-07-1989</label>
+	                    <input type="text" name="tanggalLahir" class="cform-text" placeholder="Tanggal Lahir" title="Tanggal Lahir"></input>
+	                    </span>
+
+                    </div>
+                     
+                    
+                </div>
+                <div class="row">
+                	<div class="span5"> <span class="tanggalLahir">
+                    <label>File KTP</label> 
+                    <input type="file" name="foto_ktp">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                        <p class="help-block">Telusuri...</p>
+                    </span> </div>	
+                </div>
+                <div class="row">
+                	<div class="span5"> <span class="email">
+                    <input type="text" name="no_telp" class="cform-text" placeholder="Nomor Telepon" title="Nomor Telepon"></input>
+                    </span> </div>
+                </div>
+                <div class="row">
+                	<div class="span5"> <span class="email">
+                    <input type="text" name="email" class="cform-text" placeholder="Email" title="Email"></input>
+                    </span> </div>
+                </div>
+                <div class="row">
+                	<div class="span5"> <span class="kataSandi">
+                    <input type="text" name="kataSandi" class="cform-text" placeholder="Kata Sandi" title="Kata Sandi"></input>
+                    </span> </div>
+                </div>
+                <div class="row">
+                	<div class="span5"> <span class="ulangSandi">
+                    <input type="text" name="ulangSandi" class="cform-text" placeholder="Ulangi Kata Sandi" title="Ulangi Kata Sandi"></input>
+                    </span> </div>
+                </div>
+
+                <div>
+                  <input type="submit" value="Daftar" class="cform-submit pull-left">
+                  
+                </div>
+                <div class="cform-response-output"></div>
+              </form>
+            </div>
           </div>
-          <!-- /.span3 -->
-          <div class="span3">
-            <div class="align"> <i class="icon-vector sev_icon"></i> </div>
-            <h2>Print Design</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-          </div>
-          <!-- /.span3 -->
-          <div class="span3">
-            <div class="align"> <i class="icon-basket sev_icon"></i> </div>
-            <h2>Ecommerce</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-          </div>
-          <!-- /.span3 -->
-          <div class="span3">
-            <div class="align"> <i class="icon-mobile-1 sev_icon"></i> </div>
-            <h2>Marketing</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-          </div>
-          <!-- /.span3 -->
+          <!-- ./span12 -->
         </div>
-        <!-- /.row -->
+        
       </div>
       <!-- /.container -->
     </section>
@@ -250,39 +302,29 @@
       <!-- /.container -->
     </section>
     <hr>
-    <!--******************** Contact Section ********************-->
+    <!--******************** Login Section ********************-->
     <section id="login" class="single-page scrollblock">
       <div class="container">
-        <div class="align"><i class="icon-mail-2"></i></div>
-        <h1>Contact us now!</h1>
+        <div class="align"><i class="icon-group-circled"></i></div>
+        <h1>Sudah Punya Akun? Login disini.</h1>
         <div class="row">
           <div class="span12">
             <div class="cform" id="theme-form">
               <form action="#" method="post" class="cform-form">
                 <div class="row">
-                  <div class="span6"> <span class="your-name">
-                    <input type="text" name="your-name" placeholder="Your Name" class="cform-text" size="40" title="your name">
-                    </span> </div>
-                  <div class="span6"> <span class="your-email">
-                    <input type="text" name="your-email" placeholder="Your Email" class="cform-text" size="40" title="your email">
+                    <div class="span5"> <span class="username">
+                    <input type="text" name="username" class="cform-text" placeholder="Username" title="Username"></input>
                     </span> </div>
                 </div>
                 <div class="row">
-                  <div class="span6"> <span class="company">
-                    <input type="text" name="company" placeholder="Your Company" class="cform-text" size="40" title="company">
-                    </span> </div>
-                  <div class="span6"> <span class="website">
-                    <input type="text" name="website" placeholder="Your Website" class="cform-text" size="40" title="website">
-                    </span> </div>
-                </div>
-                <div class="row">
-                  <div class="span12"> <span class="message">
-                    <textarea name="message" class="cform-textarea" cols="40" rows="10" title="drop us a line."></textarea>
+                	<div class="span5"> <span class="username">
+                    <input type="text" name="password" class="cform-text" placeholder="Password" title="Password"></input>
                     </span> </div>
                 </div>
                 <div>
-                  <input type="submit" value="Send message" class="cform-submit pull-left">
+                  <input type="submit" value="Login" class="cform-submit pull-left">
                 </div>
+
                 <div class="cform-response-output"></div>
               </form>
             </div>
@@ -454,6 +496,18 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
     <script type="text/javascript" src="js/site.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+
+    <!-- Date Picker -->
+    <script type="text/javascript">
+            $(function () {
+                $('#datepicker').datepicker({
+                  format: 'yyyy-mm-dd'
+                });
+            });
+    </script>
     
     <!--ANALYTICS CODE-->
 	<script type="text/javascript">
