@@ -33,24 +33,31 @@
           <a href="kecamatan_view.php" class="list-group-item">Data Kecamatan</a>
           <a href="desa_view.php" class="list-group-item">Data Desa</a>
           <a href="usaha_view.php" class="list-group-item">Data Usaha</a>
+          <a href="galeri_view.php" class="list-group-item">Data Galeri</a>
           <a href="#" class="list-group-item"><font color="blue"><b>LOGOUT</b></font></a>
         </div>
       </div>
       <div class="col-md-9">
         <?php
-
-            $link=koneksi_db();
-
-           
-                    $id_sektor = $_GET['id_sektor'];
-                    $hapus = "UPDATE sektor_usaha SET dihapus='Y' WHERE id_sektor='$id_sektor'";
-                    $res=mysql_query($hapus,$link);
-                    if ($res) {?>
-                      <div class="alert alert-success" role="alert">Data Sektor Berhasil Dihapus !!</div>
-                    <?php } 
-                    else {
-                      echo "Gagal Broh !!!";
-                    }
+        //if (isset($_GET['no_ktp'])) {
+          $link = koneksi_db();
+          //$no_ktp = isset($_GET['no_ktp']);
+          //if (isset($_POST['id_sektor'])) 
+          //{
+            $id_sektor = $_POST['id_sektor'];
+            $nama_sektor = $_POST['nama_sektor'];
+            $sql = "UPDATE sektor_usaha SET nama_sektor='$nama_sektor' WHERE id_sektor='$id_sektor'";
+            $res=mysql_query($sql,$link);
+            if ($res) 
+            {?>
+              <div class="alert alert-success" role="alert">Data berhasil di ubah</div>
+            <?php
+            } 
+            else {
+              echo "Gagal Broh !!!";
+            }
+          //}
+        //}               
         ?>
       </div>
     </div>

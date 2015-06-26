@@ -60,7 +60,7 @@
                     <div class="form-group">
                       <label for="alamat" class="col-sm-4 control-label">Alamat</label>
                       <div class="col-sm-8">
-                        <textarea type="text" class="form-control" id="alamat" name="alamat"  placeholder="Alamat Tinggal"></textarea>
+                        <textarea class="form-control" id="alamat" name="alamat"  placeholder="Alamat Tinggal"></textarea>
                       </div>
                     </div>
                     <div class="form-group">

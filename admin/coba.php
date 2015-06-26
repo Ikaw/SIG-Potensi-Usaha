@@ -25,7 +25,40 @@
 </div>
 <div class="container-fluid">
   <div class="row show-grid">
-    <?php menu();?>
+    <div class="col-md-4 col-md-offset-4" align="center">
+      <div class="mylogin header">
+        <h2>GIS - LOGIN</h2>
+      </div>
+    </div>
+  </div>
+  <div class="row show-grid">
+    <div class="col-md-4 col-md-offset-4" align="center">
+      <div class="mylogin">
+        <div class="form-group">
+          <div class="col-md-8 col-md-offset-2">
+            <h3>Username</h3>
+          </div>
+          <div class="col-md-8 col-md-offset-2">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-8 col-md-offset-2">
+            <h3>Password</h3>
+          </div>
+          <div class="col-md-8 col-md-offset-2">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Password">
+          </div>
+        </div>
+        <div class="form-group" align="center">
+          <div class="col-md-offset-2 col-md-8">
+            <br><br>
+            <button type="submit" class="btn btn-primary" id="Login">Login</button>
+            <a href="#"><p>Lupa Password</p></a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>       
 <div class="container-fluid">

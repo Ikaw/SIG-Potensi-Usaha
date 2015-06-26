@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/css.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,141 +20,50 @@
   </head>
 <body>
 <!-- AWAL CONTENT  -- hapus dari sini kebawah (sampai AKHIR CONTENT) -->
-    <table width="100%" align="center" border=0 >
-      <tr>
-        <td colspan=2 align="center" >
-          <?php header_web();?>
-        </td>
-      </tr>
-      <tr> 
-        <td width="250px">
-          <?php menu();?>
-        </td> 
-        <td valign="top">
-          <table class="table table-striped" align="center">
-            <tr>
-              <td align="left" width="300px">
-                <a href="pengusaha_form_tambah.php"><button type="button" class="btn btn-primary">Tambah</button></a>
-                <a href="pengusaha_hapus.php"><button type="button" class="btn btn-primary">Hapus</button></a>
-                <a href="pengusaha_edit.php"><button type="button" class="btn btn-primary">Edit</button></a>
-              </td>
-              <td align="center">
-                <div class="row">
-                  <div class="col-lg-8">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Pencarian...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">Cari</button>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </table>
-          <?php
+  <div class="container-fluid header">
+    <?php header_web();?>
+  </div>
+  <div class="container-fluid">
+    <div class="row show-grid">
+      <div class="col-md-3">
+        <div class="list-group" align="center">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Pencarian...">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button">Cari</button>
+            </span>
+          </div>
+          <h3>ADMINISTRATOR</h3>
+          <a href="pengusaha_view.php" class="list-group-item active">Data Pengusaha</a>
+          <a href="sektor_view.php" class="list-group-item">Data Sektor Usaha</a>
+          <a href="kecamatan_view.php" class="list-group-item">Data Kecamatan</a>
+          <a href="desa_view.php" class="list-group-item">Data Desa</a>
+          <a href="usaha_view.php" class="list-group-item">Data Usaha</a>
+          <a href="#" class="list-group-item"><font color="blue"><b>LOGOUT</b></font></a>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <?php
 
             $link=koneksi_db();
 
-            if (isset($_GET['no_ktp'])) 
-                  {
+           
                     $no_ktp = $_GET['no_ktp'];
-                    $sql = "UPDATE pemilik_usaha SET dihapus='Y' WHERE no_ktp='$no_ktp'";
-                    $res=mysql_query($sql,$link);
-                    if ($res) {
-                      echo "Berhasil dihapus";
-                    } 
+                    $hapus = "UPDATE pemilik_usaha SET dihapus='Y' WHERE no_ktp='$no_ktp'";
+                    $res=mysql_query($hapus,$link);
+                    if ($res) {?>
+                      <div class="alert alert-success" role="alert">Data Pengusaha Berhasil Dihapus !!</div>
+                    <?php } 
                     else {
                       echo "Gagal Broh !!!";
                     }
-                  }
-
-            $sql="select * from pemilik_usaha where dihapus='T' order by no_ktp";
-            $result=mysql_query($sql,$link);
-            $banyakrecord=mysql_num_rows($result);
-            if($banyakrecord>0)
-            {
-              ?>
-              <table class="table table-striped" align="center">
-                <tr>
-                  <td colspan=10 align="center" valign="middle"><font></font><h3>Hapus Data Pengusaha</h3></td>
-                </tr>
-                <tr>
-                  <td>Nama</td>
-                  <td>Nomor KTP</td>
-                  <td>Alamat</td>
-                  <td>Tempat Lahir</td>
-                  <td>Tanggal Lahir</td>
-                  <td>File KTP</td>
-                  <td>No Telp</td>
-                  <td>Email</td>
-                  <td>Kata Sandi</td>
-                  <td>Aksi</td>
-                </tr>
-              <?php
-              $i=0;
-              while($data=mysql_fetch_array($result))
-              {
-                $i++;
-                ?>
-                <tr>
-                  <form method="get" action="<?php echo $_SERVER["PHP_SELF"];?>">
-      
-                  <td>
-                    <?php echo $data['nama'];?>
-                  </td>
-                  <td>
-                    <?php echo $data['no_ktp'];?>
-                    <input type="hidden" value="<?php echo $data['no_ktp'];?>" name="no_ktp">
-                  </td>
-                  <td>
-                    <?php echo $data['alamat'];?>
-                  </td>
-                  <td>
-                    <?php echo $data['tpt_lahir'];?>
-                  </td>
-                  <td>
-                    <?php echo $data['tgl_lahir'];?>
-                  </td>
-                  <td>
-                    <img src="../admin/gambar/<?php echo $data['foto_ktp'];?>" width="70px" height="70px">
-                  </td>
-                  <td>
-                    <?php echo $data['no_telp'];?>
-                  </td>
-                  <td>
-                    <?php echo $data['email'];?>
-                  </td>
-                  <td>
-                    <?php echo $data['password'];?>
-                  </td>
-                  <td align="center">
-                    <div class="form-group" align="center">
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary">Hapus</button>
-                      </div>
-                    </div>
-                  </td>
-                  </form>
-                </tr>
-                
-                  <?php
-              }
-            }     
-            else
-            {
-              echo "Data tidak ditemukan";
-            }?> 
-            </table>
-        </td>
-      </tr>
-      <tr>
-        <td colspan=2>
-          <?php footer_web();?>
-        </td>
-      </tr>
-    </table>
-
+        ?>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <?php footer_web();?>
+  </div>
 <!-- AKHIR CONTENT - dari sini kebawah jgn dihapus -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-1.11.3.min.js"></script>

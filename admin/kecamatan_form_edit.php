@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/css.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,33 +20,57 @@
   </head>
   <body>
 <!-- AWAL CONTENT  -- hapus dari sini kebawah (sampai AKHIR CONTENT) -->
-    <table width="100%" align="center" border=0 > 
-      <tr>
-        <td colspan=2 align="center" >
-          <?php header_web();?>
-        </td>
-      </tr>
-      <tr> 
-        <td width="20%" valign="top" align="center">
-          <?php menu();?>
-        </td>
-        <td valign="top" width="80%">
-          <!-- MULAI KODING DISINI -->
+<div class="container-fluid header">
+  <?php header_web();?>
+</div>
+<div class="container-fluid">
+  <div class="row show-grid">
+    <div class="col-md-3">
+      <div class="list-group" align="center">
+        <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>   ADMINISTRATOR</h3>
+        <a href="pengusaha_view.php" class="list-group-item ">Data Pengusaha</a>
+        <a href="sektor_view.php" class="list-group-item ">Data Sektor Usaha</a>
+        <a href="kecamatan_view.php" class="list-group-item active">Data Kecamatan</a>
+        <a href="desa_view.php" class="list-group-item">Data Desa</a>
+        <a href="usaha_view.php" class="list-group-item">Data Usaha</a>
+        <a href="galeri_view.php" class="list-group-item">Data Galeri</a>
+        <a href="#" class="list-group-item"><font color="blue"><b>LOGOUT</b></font></a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row show-grid">
+        <div class="col-md-5">
+          <!-- Button trigger modal -->
+                <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#tambah">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah Data</span>
+                </button>
+                <!-- Modal<span class="glyphicon glyphicon-search" aria-hidden="true"></span> -->
+                <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <?php tambah_kecamatan();?>
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+        </div>
+        <div class="col-md-7">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Pencarian...">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button">
+                <span class="glyphicon glyphicon-search" aria-hidden="true">  Cari</span>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row show-grid">
+        <div class="col-md-12">
           <?php
           $link = koneksi_db();
-
-          if (isset($_POST['id_kec'])) 
-          {
-            $id_kec = $_POST['id_kec'];
-            $nama_kec = $_POST['nama_kec'];
-            $sql = "UPDATE kecamatan SET nama_kec='$nama_kec' WHERE id_kec='$id_kec'";
-            $res=mysql_query($sql,$link);
-            if ($res) {
-            } 
-            else {
-              echo "Gagal Broh !!!";
-            }
-          }
 
           if (isset($_GET['id_kec'])) {
             $id_kec = $_GET['id_kec'];
@@ -53,43 +78,34 @@
             $result=mysql_query($sql, $link);
             $banyakrecord=mysql_num_rows($result);
             if ($banyakrecord==1) {
-              $data = mysql_fetch_array($result)?>
+              $data = mysql_fetch_array($result);
+              $id_kec = $data['id_kec'];
+              ?>
 
-              <form method="POST" action="<?php echo $_SERVER["PHP_SELF"];?>" class="form-horizontal">
-              <table align="center" width="50%">
-                <tr>
-                  <td align="center" colspan=2>
-                    <br>
-                    <div class="panel panel-primary">
-                      <div class="panel-heading">
-                        <h3 class="panel-title">Edit Data Kecamatan</h3>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan=2>
-                      <div class="form-group">
-                        <label for="id_kec" class="col-sm-4 control-label">ID Kecamatan</label>
-                        <div class="col-sm-8">
-                          <input type="text" class="form-control" id="id_kec" name="id_kec" value="<?=$data['id_kec']?>">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="nama_kec" class="col-sm-4 control-label">Nama Kecamatan</label>
-                        <div class="col-sm-8">
-                          <input type="text" class="form-control" id="nama_kec" name="nama_kec" value="<?=$data['nama_kec']?>">
-                        </div>
-                      </div>
-                      <div class="form-group" align="center">
-                        <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-primary" id="Simpan">Simpan</button>
-                        </div>
-                      </div>
-                  </td>
-                </tr>
-              </table>
-            </form>
+              <form method="POST" action="kecamatan_proses_edit.php?id_kec=<?=$id_kec?>" class="form-horizontal">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Edit Data Kecamatan</h3>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="id_kec" class="col-sm-4 control-label">ID Kecamatan </label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="id_kec" name="id_kec" value="<?=$data['id_kec']?>" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="nama_kec" class="col-sm-4 control-label">Nama Kecamatan </label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="nama_kec" name="nama_kec" value="<?=$data['nama_kec']?>">
+                  </div>
+                </div>
+                <div class="form-group" align="center">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" id="Simpan">Simpan</button>
+                  </div>
+                </div>
+              </form>
 
 
             <?php
@@ -98,6 +114,14 @@
             }
           
           }?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+          <!-- MULAI KODING DISINI -->
+          
           
           <p>&nbsp;</p>
         </td> 
@@ -115,19 +139,5 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
-    <!--<script>
-      $('#datetimepicker').datetimepicker({
-        format: 'dd-mm-yyyy',
-        autoclose: true,
-        minView: 2
-      });
-    </script>-->
-    <script type="text/javascript">
-            $(function () {
-                $('#datepicker').datepicker({
-                  format: 'yyyy-mm-dd'
-                });
-            });
-        </script>
   </body>
 </html>

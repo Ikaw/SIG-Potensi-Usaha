@@ -27,30 +27,47 @@
     <div class="row show-grid">
       <div class="col-md-3">
         <div class="list-group" align="center">
-          <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>   ADMINISTRATOR</h3>
-          <a href="pengusaha_view.php" class="list-group-item ">Data Pengusaha</a>
-          <a href="sektor_view.php" class="list-group-item active">Data Sektor Usaha</a>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Pencarian...">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button">Cari</button>
+            </span>
+          </div>
+          <h3>ADMINISTRATOR</h3>
+          <a href="pengusaha_view.php" class="list-group-item active">Data Pengusaha</a>
+          <a href="sektor_view.php" class="list-group-item">Data Sektor Usaha</a>
           <a href="kecamatan_view.php" class="list-group-item">Data Kecamatan</a>
           <a href="desa_view.php" class="list-group-item">Data Desa</a>
           <a href="usaha_view.php" class="list-group-item">Data Usaha</a>
+          <a href="galeri_view.php" class="list-group-item">Data Galeri</a>
           <a href="#" class="list-group-item"><font color="blue"><b>LOGOUT</b></font></a>
         </div>
       </div>
       <div class="col-md-9">
         <?php
-
-            $link=koneksi_db();
-
-           
-                    $id_sektor = $_GET['id_sektor'];
-                    $hapus = "UPDATE sektor_usaha SET dihapus='Y' WHERE id_sektor='$id_sektor'";
-                    $res=mysql_query($hapus,$link);
-                    if ($res) {?>
-                      <div class="alert alert-success" role="alert">Data Sektor Berhasil Dihapus !!</div>
-                    <?php } 
-                    else {
-                      echo "Gagal Broh !!!";
-                    }
+        //if (isset($_GET['no_ktp'])) {
+          $link = koneksi_db();
+          //$no_ktp = isset($_GET['no_ktp']);
+          $no_ktp = $_GET['no_ktp'];
+          $nama = $_POST['nama'];
+          $alamat = $_POST['alamat'];
+          $tpt_lahir = $_POST['tpt_lahir'];
+          $tgl_lahir = $_POST['tgl_lahir'];
+          $no_telp = $_POST['no_telp'];
+          $email = $_POST['email'];
+          $password = $_POST['password'];
+              
+          $sql = "UPDATE pemilik_usaha SET nama=$nama, alamat=$alamat, tpt_lahir=$tpt_lahir, tgl_lahir=$tgl_lahir, no_telp=$no_telp, email=$email, password=$password WHERE no_ktp='$no_ktp')";
+          $result = mysql_query($sql, $link);
+          if ($result) {?>
+            <div class="alert alert-success" role="alert">Data Pengusaha Berhasil Diubah !!</div>
+          <?php
+          }
+          else {?>
+            <div class="alert alert-danger" role="alert">Gagal di Ubah !!</div>
+          <?php
+          }
+        //}               
         ?>
       </div>
     </div>

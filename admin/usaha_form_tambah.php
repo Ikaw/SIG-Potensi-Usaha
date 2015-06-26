@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/peta.css">
+    <link rel="stylesheet" href="css/maps.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,7 +40,7 @@
       });
     });
     </script>
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
 
     function updateMarkerPosition(latLng) {
     document.getElementById('lat').value = [latLng.lat()];
@@ -70,7 +71,102 @@
       updateMarkerPosition(marker1.getPosition());
     });
 
-    </script>
+    </script>-->
+        <script type="text/javascript" >
+ 
+    (function() {
+ 
+    // Mendefinisikan variabel global
+    var map, geocoder, marker, infowindow;
+ 
+    window.onload = function() {
+ 
+      // Membuat map baru
+      var options = {  
+        zoom: 5,  
+        center: new google.maps.LatLng(-6.20810, 106.84571),  
+        mapTypeId: google.maps.MapTypeId.ROADMAP  
+      };  
+ 
+      map = new google.maps.Map(document.getElementById('map'), options);
+ 
+      // Mengambil referensi ke form HTML
+      var form = document.getElementById('addressForm');
+ 
+      // Menangkap event submit form
+      form.onsubmit = function() {
+        // Mendapatkan alamat dari input teks
+        var address = document.getElementById('address').value;
+ 
+        // Membuat panggilan Geocoder 
+        getCoordinates(address);
+ 
+        // Menghindari form dari page submit
+        return false;
+ 
+      }
+ 
+    }
+ 
+    // Membuat sebuah fungsi yang mengembalikan koordinat alamat
+    function getCoordinates(address) {
+      // Mengecek apakah terdapat 'geocoded object'. Jika tidak maka buat satu.
+      if(!geocoder) {
+        geocoder = new google.maps.Geocoder();  
+      }
+ 
+      // Membuat objek GeocoderRequest
+      var geocoderRequest = {
+        address: address
+      }
+ 
+      // Membuat rekues Geocode 
+      geocoder.geocode(geocoderRequest, function(results, status) {
+ 
+        // Mengecek apakah ststus OK sebelum proses
+        if (status == google.maps.GeocoderStatus.OK) {
+ 
+          // Menengahkan peta pada lokasi 
+          map.setCenter(results[0].geometry.location);
+ 
+          // Mengecek apakah terdapat objek marker
+          if (!marker) {
+            // Membuat objek marker dan menambahkan ke peta
+            marker = new google.maps.Marker({
+              map: map
+            });
+          }
+ 
+          // Menentukan posisi marker ke lokasi returned location
+          marker.setPosition(results[0].geometry.location);
+ 
+          // Mengecek apakah terdapat InfoWindow object
+          if (!infowindow) {
+            // Membuat InfoWindow baru
+            infowindow = new google.maps.InfoWindow();
+          }
+ 
+          // membuat konten InfoWindow ke alamat
+          // dan posisi yang ditemukan
+          var content = '<strong>' + results[0].formatted_address + '</strong><br />';
+          content += 'Lat: ' + results[0].geometry.location.lat() + '<br />';
+          content += 'Lng: ' + results[0].geometry.location.lng();
+ 
+          // Menambahkan konten ke InfoWindow
+          infowindow.setContent(content);
+ 
+          // Membuka InfoWindow
+          infowindow.open(map, marker);
+ 
+        } 
+ 
+      });
+ 
+    }
+ 
+  })();
+ 
+  </script>
   </head>
   <body>
 <!-- AWAL CONTENT  -- hapus dari sini kebawah (sampai AKHIR CONTENT) -->
@@ -146,12 +242,13 @@
                         </select>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="alamat" class="col-sm-4 control-label">Alamat Usaha</label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Usaha">
+                    <form id="addressForm" action="/">
+                      <div>
+                        <label for="alamat">Lokasi:</label>
+                        <input type="text" name="alamat" id="alamat" />
+                        <input type="submit" id="addressButton" value="Cari Koordinat" />          
                       </div>
-                    </div>
+                    </form>
                     <div class="form-group">
                       <label for="kecamatan" class="col-sm-4 control-label">Kecamatan</label>
                       <div class="col-sm-8" >

@@ -27,9 +27,15 @@
     <div class="row show-grid">
       <div class="col-md-3">
         <div class="list-group" align="center">
-          <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>   ADMINISTRATOR</h3>
-          <a href="pengusaha_view.php" class="list-group-item ">Data Pengusaha</a>
-          <a href="sektor_view.php" class="list-group-item active">Data Sektor Usaha</a>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Pencarian...">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button">Cari</button>
+            </span>
+          </div>
+          <h3>ADMINISTRATOR</h3>
+          <a href="pengusaha_view.php" class="list-group-item active">Data Pengusaha</a>
+          <a href="sektor_view.php" class="list-group-item">Data Sektor Usaha</a>
           <a href="kecamatan_view.php" class="list-group-item">Data Kecamatan</a>
           <a href="desa_view.php" class="list-group-item">Data Desa</a>
           <a href="usaha_view.php" class="list-group-item">Data Usaha</a>
@@ -42,15 +48,31 @@
             $link=koneksi_db();
 
            
-                    $id_sektor = $_GET['id_sektor'];
-                    $hapus = "UPDATE sektor_usaha SET dihapus='Y' WHERE id_sektor='$id_sektor'";
-                    $res=mysql_query($hapus,$link);
-                    if ($res) {?>
-                      <div class="alert alert-success" role="alert">Data Sektor Berhasil Dihapus !!</div>
-                    <?php } 
-                    else {
-                      echo "Gagal Broh !!!";
+                    $no_ktp = $_GET['no_ktp'];
+                    $aktivasi = $_GET['aktivasi'];
+                    $no_ktp = "";
+                    $aktivasi = "";
+
+                    if ($aktivasi=="DEACTIVE") {
+                      $aktif1 = "UPDATE pemilik_usaha SET aktivasi='ACTIVE' WHERE no_ktp='$no_ktp'";
+                      $res=mysql_query($aktif1,$link);
+                      if ($res) {?>
+                        <div class="alert alert-success" role="alert">Data Pengusaha Berhasil Dihapus !!</div>
+                      <?php } 
+                      else {
+                        echo "Gagal Broh !!!";
+                      }
+                    } else {
+                      $aktif2 = "UPDATE pemilik_usaha SET aktivasi='DEACTIVE' WHERE no_ktp='$no_ktp'";
+                      $res1=mysql_query($aktif2,$link);
+                      if ($res1) {?>
+                        <div class="alert alert-success" role="alert">Data Pengusaha Berhasil Dihapus !!</div>
+                      <?php } 
+                      else {
+                        echo "Gagal Broh !!!";
+                      }
                     }
+                    
         ?>
       </div>
     </div>

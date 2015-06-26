@@ -35,9 +35,9 @@
 
             $link=koneksi_db();
 
-            if (isset($_GET['id_kec'])) 
+            if (isset($_GET['id_gambar'])) 
                   {
-                    $id_kec = $_POST['id_kec'];
+                    $id_kec = $_POST['id_gambar'];
 					$id_usaha = $_POST['id_usaha'];
 					$gambar = $_POST['gambar'];
                     $sql = "UPDATE galeri SET gambar='$gambar', id_usaha='$id_usaha' WHERE id_gambar='$id_gambar'";
